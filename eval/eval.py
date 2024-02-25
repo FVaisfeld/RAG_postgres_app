@@ -31,7 +31,7 @@ def ragas_eval(question):
         return evaluation_results, response, context
     except Exception as e:
         print(f"Ragas evaluation failed: {e}")
-        return []
+        return [], [], []
 
 
 if __name__ == "__eval__":
