@@ -35,7 +35,7 @@ if __name__ == "__eval__":
 
     args = sys.argv[1:]
     if not args:
-        print("Usage: python main.py <question> <flag context>")
+        print("Usage: python main.py <question>")
         sys.exit(1)
 
     question = args[0]
