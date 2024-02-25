@@ -1,0 +1,7 @@
+dbname: 'felix' 
+user: 'felix'
+json_path: './data/question_embedding.json'
+n_context: 5 # number of retrieved contexts
+dist_metric: 'cosine' # {cosine, L2}
+model: "gpt-4" # "{gpt-4, gpt-3.5-turbo-instruct}
+temperature: 0.1
