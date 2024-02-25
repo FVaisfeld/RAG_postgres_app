@@ -14,21 +14,24 @@ os.environ['OPENAI_API_KEY'] = get_openai_api_key()
 
 def ragas_eval(question):
     """Evaluates the RAG response against predefined metrics."""
+    try:
+        context, response = rag_pipeline(question)
 
-    context, response = rag_pipeline(question)
+        # Format context
+        context = [str(c)[2:-4] for c in context]
 
-    # Format context
-    context = [str(c)[2:-4] for c in context]
-
-    response_dataset = Dataset.from_dict({
-        "question": [question],
-        "answer": [response],
-        "contexts": [context],
-    })
-    # RAGAS evaluation step
-    metrics_to_evaluate = [faithfulness, answer_relevancy, context_relevancy] #for more info and more metrics see RAGAS documentation on langchain
-    evaluation_results = evaluate(response_dataset, metrics_to_evaluate, raise_exceptions=False)
-    return evaluation_results, response, context
+        response_dataset = Dataset.from_dict({
+            "question": [question],
+            "answer": [response],
+            "contexts": [context],
+        })
+        # RAGAS evaluation step
+        metrics_to_evaluate = [faithfulness, answer_relevancy, context_relevancy] #for more info and more metrics see RAGAS documentation on langchain
+        evaluation_results = evaluate(response_dataset, metrics_to_evaluate, raise_exceptions=False)
+        return evaluation_results, response, context
+    except Exception as e:
+        print(f"Ragas evaluation failed: {e}")
+        return []
 
 
 if __name__ == "__eval__":

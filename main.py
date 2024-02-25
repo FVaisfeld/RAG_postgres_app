@@ -28,10 +28,10 @@ def json_query_embedding(query, config):
         return questions.get(query)
     except FileNotFoundError:
         print(f"The file {config.json_path} was not found.")
-        return None
+        return []
     except json.JSONDecodeError:
         print(f"Error decoding JSON from the file {config.json_path}.")
-        return None
+        return []
 
 
 
@@ -99,7 +99,7 @@ def llm_rag(query, context, config):
         return response
     except Exception as e:
         print("Error during LLM RAG processing:", e)
-        return None
+        return []
 
 
 
