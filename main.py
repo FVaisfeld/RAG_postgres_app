@@ -115,7 +115,7 @@ def rag_pipeline(query):
 def main():
     args = sys.argv[1:]
     if not args:
-        print("Usage: python main.py <question> <flag context>")
+        print("Usage: python main.py <question>")
         sys.exit(1)
 
     _, response = rag_pipeline(args[0])
